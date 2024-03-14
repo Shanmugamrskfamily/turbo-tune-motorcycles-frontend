@@ -1,11 +1,11 @@
 import { CircularProgress } from "@mui/material";
 import { useContext, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate,useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { apiContext } from "../App";
 
 function ActivateUser() {
-  const { id } = useParams();
+  const [ id ] = useSearchParams();
   const { serverApi, clientUrl } = useContext(apiContext);
   const navigate = useNavigate();
 

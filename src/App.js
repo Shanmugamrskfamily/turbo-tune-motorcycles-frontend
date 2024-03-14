@@ -26,7 +26,7 @@ function App() {
   // const serverUrl = "http://localhost:4000";
   // const clientUrl = "http://localhost:3000";
   const serverUrl = "https://turbo-tune-motorcycles.onrender.com";
-  const clientUrl = "https://whimsical-nasturtium-77b914.netlify.app";
+  const clientUrl = "https://turbo-tune-motorcycles.netlify.app/";
   const [isMobile, setIsMobile] = useState(
     window.innerWidth < 720 ? true : false
   );
@@ -48,9 +48,9 @@ function App() {
         <apiContext.Provider value={contextObj}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/activate/:id" element={<ActivateUser />} />
+            <Route path="/activate" element={<ActivateUser />} />
             <Route
-              path="/change-password/:id"
+              path="/change-password"
               element={<ChangePasswordForm />}
             />
             <Route path="/user" element={<UserLayout />}>
