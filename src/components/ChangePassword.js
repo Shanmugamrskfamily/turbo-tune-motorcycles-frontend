@@ -49,7 +49,7 @@ export function ChangePasswordForm() {
   function updatePassword(values) {
     fetch(`${serverApi}/user/change-password`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", resetToken: `${id}` },
+      headers: { "Content-Type": "application/json", resetToken: `${id.get('id')}` },
       body: JSON.stringify(values),
     })
       .then((response) => checkPostPasswordResponse(response))
@@ -70,7 +70,7 @@ export function ChangePasswordForm() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          resetToken: `${id}`,
+          resetToken: `${id.get('id')}`,
         },
       })
         .then((response) => checkTokenResponse(response))

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { apiContext } from "../App";
 
 function ActivateUser() {
-  const [ id ] = useSearchParams();
+  const [id] = useSearchParams();
   const { serverApi, clientUrl } = useContext(apiContext);
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ function ActivateUser() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        activationtoken: id,
+        activationtoken: id.get('id'),
       },
     });
 
@@ -34,6 +34,7 @@ function ActivateUser() {
 
   useEffect(() => {
     activateUser();
+    console.log(id.get('id'));
   }, []);
   return (
     <>
