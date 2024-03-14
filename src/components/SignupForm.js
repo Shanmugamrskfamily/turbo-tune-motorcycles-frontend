@@ -11,10 +11,12 @@ import * as yup from "yup";
 import { apiContext } from "../App";
 import { toast } from "react-toastify";
 import { CustomLoadingButton } from "./customLoadingButton";
+import { useNavigate } from "react-router";
 
 function SignupForm(props) {
   const [isLoading, setIsLoading] = useState(false);
   const { serverApi } = useContext(apiContext);
+  const navigate = useNavigate();
   const { setForm } = props;
   const initialValidationSchema = {
     role: yup.string().required(),
@@ -31,7 +33,7 @@ function SignupForm(props) {
     pin: yup.string().min(6),
     pins: yup.string().min(6),
   };
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit, resetForm } =
     useFormik({
       initialValues: {
         role: "",
@@ -55,15 +57,17 @@ function SignupForm(props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
-    // console.log("signup response ", response);
     const data = await response.json();
-    // console.log("signup response data", data);
     setIsLoading(false);
-    data.message ===
-    "User Created, use the Activation link Sent on mail for Activation"
-      ? toast.success(data.message)
-      : toast.error(data.message);
+    if (data.message === "User Created, use the Activation link Sent on mail for Activation") {
+      toast.success(data.message);
+      // Reset the form after successful signup
+      resetForm();
+    } else {
+      toast.error(data.message);
+    }
   }
+
   return (
     <>
       <div className="signup-form-container">

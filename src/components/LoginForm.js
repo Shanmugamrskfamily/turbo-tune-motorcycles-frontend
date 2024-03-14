@@ -101,7 +101,7 @@ function LoginForm(props) {
               variant="contained"
               color="success"
               onClick={() =>
-                login({ email: "user@gmail.com", password: "12345678" })
+                login({ email: "demo_user@gmail.com", password: "12345678" })
               }
             >
               Demo User-Login
@@ -110,7 +110,7 @@ function LoginForm(props) {
               type="button"
               variant="contained"
               onClick={() =>
-                login({ email: "admin@gmail.com", password: "12345678" })
+                login({ email: "admin@turbotunemotorcycles.com", password: "87654321" })
               }
             >
               Demo Admin-Login
