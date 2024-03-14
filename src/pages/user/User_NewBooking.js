@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { IconButton } from "@mui/material";
-import { userDataContext } from "./UserLayout";
 
+import { IconButton } from "@mui/material";
+
+import { userDataContext } from "./UserLayout ";
 
 function UserNewBooking() {
   const { allServices, allServiceCategories, cartDispatch } =

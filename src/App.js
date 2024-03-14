@@ -5,25 +5,26 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 import { ActivateUser } from "./pages/ActivateUser";
+import { NotFound } from "./components/notfound";
 import { ChangePasswordForm } from "./components/ChangePassword";
-import { UserLayout } from "./pages/user/UserLayout";
+import { UserLayout } from "./pages/user/UserLayout ";
+import { UserDashboard } from "./pages/user/User_Dashboard";
 import { UserNewBooking } from "./pages/user/User_NewBooking";
 import { UserAllBookings } from "./pages/user/User_AllBookings";
 import { UserSupport } from "./pages/user/User_Support";
+import { WorkshopLayout } from "./pages/workshop/workshopLayout";
+import { WorkshopAllBookings } from "./pages/workshop/WorkshopAllBookings";
+import { WorkshopDashboard } from "./pages/workshop/WorkshopDashboard";
+import { WorkshopStatusFilteredBookings } from "./pages/workshop/WorkshopStatusFilteredBookings";
 import { UserProfile } from "./pages/user/UserProfile";
+import { WorkshopProfile } from "./pages/workshop/WorkshopProfile";
 import { CartPage } from "./pages/user/CartPage";
 import { WorkshopSelection } from "./pages/user/WorkshopSelection";
-import { NotFound } from "./components/NotFound";
-import { WorkshopLayout } from "./pages/workshop/workshopLayout";
-import { WorkshopDashboard } from "./pages/workshop/WorkshopDashboard";
-import { WorkshopAllBookings } from "./pages/workshop/WorkshopAllBookings";
-import { WorkshopStatusFilteredBookings } from "./pages/workshop/WorkshopStatusFilteredBookings";
-import { WorkshopProfile } from "./pages/workshop/WorkshopProfile";
-import { UserDashboard } from "./pages/user/User_DashBoard";
 export const apiContext = createContext();
 
 function App() {
-  
+  // const serverUrl = "http://localhost:4000";
+  // const clientUrl = "http://localhost:3000";
   const serverUrl = "https://turbo-tune-motorcycles.onrender.com";
   const clientUrl = "https://whimsical-nasturtium-77b914.netlify.app";
   const [isMobile, setIsMobile] = useState(

@@ -4,16 +4,13 @@ import { useContext } from "react";
 import { apiContext } from "../../App";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
+import { EditWorkshopProfile } from "./EditWorkshopProfile.js";
 
-
-import { toast } from "react-toastify";
-import { EditUserProfile } from "./EditUserProfile";
-
-function UserProfile() {
+function WorkshopProfile() {
   const { serverApi } = useContext(apiContext);
-  const [userProfile, setUserProfile] = useState(null);
+  const [workshopProfile, setWorkshopProfile] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  async function fetchUserProfile() {
+  async function fetchWorkshopProfile() {
     const response = await fetch(`${serverApi}/user/profile`, {
       method: "GET",
       headers: {
@@ -24,17 +21,15 @@ function UserProfile() {
     if (response.status === 200) {
       const data = await response.json();
       // console.log(data.message);
-      setUserProfile(data.payload);
-      // toast.success(data.message);
+      setWorkshopProfile(data.payload);
     } else {
       const data = await response.json();
-      toast.error(data.message);
-      // console.log(data.message);
+      console.log(data.message);
     }
   }
 
   useEffect(() => {
-    fetchUserProfile();
+    fetchWorkshopProfile();
   }, []);
   return (
     <>
@@ -50,9 +45,9 @@ function UserProfile() {
           </IconButton>
         </div>
         {editMode ? (
-          <EditUserProfile userProfile={userProfile} />
+          <EditWorkshopProfile workshopProfile={workshopProfile} />
         ) : (
-          <ViewUserProfile userProfile={userProfile} />
+          <ViewWorkshopProfile workshopProfile={workshopProfile} />
         )}
         {/* <pre>{JSON.stringify(userProfile)}</pre> */}
       </div>
@@ -60,21 +55,27 @@ function UserProfile() {
   );
 }
 
-function ViewUserProfile({ userProfile }) {
+function ViewWorkshopProfile({ workshopProfile }) {
   return (
     <div className="view-profile-container">
       <div className="credentials-wrapper">
-        <p>Name : {userProfile?.name}</p>
-        <p>email : {userProfile?.email}</p>
+        <p>Name : {workshopProfile?.name}</p>
+        <p>email : {workshopProfile?.email}</p>
         <p>Password ***</p>
       </div>
       <div className="contacts-wrapper">
-        <p>Mobile : {userProfile?.mobile}</p>
-        <p>Address : {userProfile?.address}</p>
-        <p>Pincode : {userProfile?.pin}</p>
+        <p>Mobile : {workshopProfile?.mobile}</p>
+        <p>Address : {workshopProfile?.address}</p>
+        <p
+          style={{
+            wordWrap: "break-word",
+          }}
+        >
+          Pincodes : {workshopProfile?.pins.join(",")}
+        </p>
       </div>
     </div>
   );
 }
 
-export { UserProfile };
+export { WorkshopProfile };
