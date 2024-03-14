@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { userDataContext } from "./UserLayout ";
+
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { Button, IconButton } from "@mui/material";
@@ -7,6 +7,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { userDataContext } from "./UserLayout";
 
 function CartPage() {
   const { cartServices } = useContext(userDataContext);

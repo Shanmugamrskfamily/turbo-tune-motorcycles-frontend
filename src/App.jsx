@@ -1,35 +1,90 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createContext, useEffect, useState } from "react";
+import "./App.css";
+import { Home } from "./pages/Home";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Route, Routes } from "react-router-dom";
+import { ActivateUser } from "./pages/ActivateUser";
+import { ChangePasswordForm } from "./components/ChangePassword";
+import { UserLayout } from "./pages/user/UserLayout";
+import { UserDashboard } from "./pages/user/User_DashBoard";
+import { UserNewBooking } from "./pages/user/User_NewBooking";
+import { UserAllBookings } from "./pages/user/User_AllBookings";
+import { UserSupport } from "./pages/user/User_Support";
+import { UserProfile } from "./pages/user/UserProfile";
+import { CartPage } from "./pages/user/CartPage";
+import { WorkshopSelection } from "./pages/user/WorkshopSelection";
+import { NotFound } from "./components/NotFound";
+import { WorkshopLayout } from "./pages/workshop/workshopLayout";
+import { WorkshopDashboard } from "./pages/workshop/WorkshopDashboard";
+import { WorkshopAllBookings } from "./pages/workshop/WorkshopAllBookings";
+import { WorkshopStatusFilteredBookings } from "./pages/workshop/WorkshopStatusFilteredBookings";
+import { WorkshopProfile } from "./pages/workshop/WorkshopProfile";
+export const apiContext = createContext();
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
+  const serverUrl = "https://turbo-tune-motorcycles.onrender.com";
+  const clientUrl = "https://whimsical-nasturtium-77b914.netlify.app";
+  const [isMobile, setIsMobile] = useState(
+    window.innerWidth < 720 ? true : false
+  );
+  const contextObj = { serverApi: serverUrl, clientUrl, isMobile };
+  // console.log(contextObj);
+  function handleResize() {
+    window.innerWidth < 720 ? setIsMobile(true) : setIsMobile(false);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <div className="project-container">
+        <ToastContainer theme="dark" />
+        <apiContext.Provider value={contextObj}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/activate/:id" element={<ActivateUser />} />
+            <Route
+              path="/change-password/:id"
+              element={<ChangePasswordForm />}
+            />
+            <Route path="/user" element={<UserLayout />}>
+              <Route index element={<UserDashboard />} />
+              <Route path="" element={<UserDashboard />} />
+              <Route path="bookNew" element={<UserNewBooking />} />
+              <Route path="allBookings" element={<UserAllBookings />} />
+              <Route path="support" element={<UserSupport />} />
+              <Route path="profile" element={<UserProfile />} />
+              <Route path="cart" element={<CartPage />} />
+              <Route
+                path="cart/workshop-selection"
+                element={<WorkshopSelection />}
+              />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+            <Route path="/workshop" element={<WorkshopLayout />}>
+              <Route index element={<WorkshopDashboard />} />
+              {/* <Route path="" element={<WorkshopDashboard />} /> */}
+              <Route path="allBookings" element={<WorkshopAllBookings />} />
+              <Route
+                path="allBookings/:id"
+                element={<WorkshopStatusFilteredBookings />}
+              />
+              <Route path="support" element={<UserSupport />} />
+              <Route path="profile" element={<WorkshopProfile />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </apiContext.Provider>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

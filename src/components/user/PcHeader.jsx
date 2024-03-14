@@ -1,15 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Avatar from "@mui/material/Avatar";
 import BuildCircleIcon from "@mui/icons-material/BuildCircle";
 import Badge from "@mui/material/Badge";
 import { useContext, useEffect, useState } from "react";
-
 import { apiContext } from "../../App";
 import { Button } from "@mui/material";
-import { userDataContext } from "../../pages/user/UserLayout ";
 import { toast } from "react-toastify";
+import { userDataContext } from "../../pages/user/UserLayout";
 
 function PcHeader() {
   const { serverApi, isMobile } = useContext(apiContext);
