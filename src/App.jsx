@@ -7,7 +7,6 @@ import { Route, Routes } from "react-router-dom";
 import { ActivateUser } from "./pages/ActivateUser";
 import { ChangePasswordForm } from "./components/ChangePassword";
 import { UserLayout } from "./pages/user/UserLayout";
-import { UserDashboard } from "./pages/user/User_DashBoard";
 import { UserNewBooking } from "./pages/user/User_NewBooking";
 import { UserAllBookings } from "./pages/user/User_AllBookings";
 import { UserSupport } from "./pages/user/User_Support";
@@ -20,6 +19,7 @@ import { WorkshopDashboard } from "./pages/workshop/WorkshopDashboard";
 import { WorkshopAllBookings } from "./pages/workshop/WorkshopAllBookings";
 import { WorkshopStatusFilteredBookings } from "./pages/workshop/WorkshopStatusFilteredBookings";
 import { WorkshopProfile } from "./pages/workshop/WorkshopProfile";
+import { UserDashboard } from "./pages/user/User_DashBoard";
 export const apiContext = createContext();
 
 function App() {
