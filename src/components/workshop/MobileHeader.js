@@ -64,9 +64,9 @@ function MobileHeader() {
             src='/images/logo.gif'
             alt="service-icon"
           />
-          <h6 style={{ color: colors.color }} className="brand-name">
+          {/* <h6 style={{ color: colors.color }} className="brand-name">
             Moto Service App
-          </h6>
+          </h6> */}
         </div>
 
         <div
