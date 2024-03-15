@@ -10,25 +10,26 @@ function Home() {
     name: "MotorCycle Repair Logo",
   };
   return (
-    <>
-      <div className="homepage-container page">
-        <h1 className="text-center title-big">Moto Service App</h1>
-        <div className="homepage-body p-1">
-          <div className="home-image-container" style={{ alignSelf: "center" }}>
-            <img src={homeImage.url} alt={homeImage.name} />
-          </div>
-          <div className="home-form-container">
-            {form === "login" ? (
-              <LoginForm form={form} setForm={setForm} />
-            ) : form === "signup" ? (
-              <SignupForm form={form} setForm={setForm} />
-            ) : form === "forgot" ? (
-              <ForgotForm form={form} setForm={setForm} />
-            ) : null}
-          </div>
-        </div>
+    <div className="container">
+    <h1 className="text-center mb-5" style={{ color: "#007bff", textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)" }}>Turbo Tune Motorcycles App</h1>
+    <div className="row">
+      <div className="col-md-6 offset-md-3 text-center mb-4">
+        <img src={homeImage.url} alt={homeImage.name} className="img-fluid" />
       </div>
-    </>
+    </div>
+    <div className="row">
+      <div className="col-md-6 offset-md-3">
+        {form === "login" ? (
+          <LoginForm form={form} setForm={setForm} />
+        ) : form === "signup" ? (
+          <SignupForm form={form} setForm={setForm} />
+        ) : form === "forgot" ? (
+          <ForgotForm form={form} setForm={setForm} />
+        ) : null}
+      </div>
+    </div>
+  </div>
+  
   );
 }
 export { Home };

@@ -6,7 +6,7 @@ function UserSupport() {
   return (
     <>
       <div className="support-page">
-        <h5 className="page-title text-center"> User Support</h5>
+        <h5 className="page-title text-center"> Turbo Tune Motorcycles Support</h5>
         <div className="support-body-content px-2 ">
           <div className="customer-care-wrapper">
             <div className="care-content mx-auto">
@@ -27,9 +27,9 @@ function UserSupport() {
                 Mail :
                 <a
                   style={{ color: "black", fontWeight: "bold" }}
-                  href={"mailto:care@nbi.in"}
+                  href={"mailto:care@turbotunemotorcycles.in"}
                 >
-                  {"care@nbi.in"}
+                  {"care@turbotunemotorcycles.in"}
                 </a>
               </p>
             </div>
@@ -73,9 +73,9 @@ function UserSupport() {
                 <p>
                   <a
                     style={{ color: "black", fontWeight: "bold" }}
-                    href={"mailto:motoservice@nbi.in"}
+                    href={"care@turbotunemotorcycles.in"}
                   >
-                    {"motoservice@nbi.in"}
+                    {"care@turbotunemotorcycles.in"}
                   </a>
                 </p>
               </div>
@@ -86,7 +86,7 @@ function UserSupport() {
               </div>
               <div className="content">
                 <p>
-                  No. 12/22, Palacode, Dharmapuri, Tamilnadu, India, PIN 636808
+                  No. 201, 1st Cross Street, Adayar, Chennai, Tamilnadu, India, PIN 600028
                 </p>
               </div>
             </div>

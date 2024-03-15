@@ -42,21 +42,23 @@ function LoginForm(props) {
       toast.error(data.message);
     }
   };
+  
   return (
     <>
       <div className="login-form-container">
-        <h2 className="text-center title-small">Login Form</h2>
-        <form onSubmit={handleSubmit} className="form login-form">
+        <h2 style={{ textAlign: "center", marginBottom: "5px", color: "orange", fontFamily: "'Arial', sans-serif", textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)" }}>Login Form</h2>
+        <form onSubmit={handleSubmit}>
           <TextField
             id="email"
             type="text"
-            label="email"
+            label="Email"
             name="email"
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.email && Boolean(errors.email)}
             helperText={touched.email && errors.email ? errors.email : null}
+            className="form-control mb-3"
           />
           <TextField
             id="password"
@@ -70,36 +72,40 @@ function LoginForm(props) {
             helperText={
               touched.password && errors.password ? errors.password : null
             }
+            className="form-control mb-3"
           />
 
           <CustomLoadingButton
             isLoading={isLoading}
             setIsLoading={setIsLoading}
             buttonComponent={
-              <Button type="submit" variant="contained">
+              <div className="text-center">
+              <Button type="submit" variant="contained" className="btn btn-primary btn-lg">
                 Login
               </Button>
+              </div>
             }
           />
-          <div className="add-menus d-flex justify-content-between">
+          <div className="text-center">
             <button
-              className="text-danger bg-transparent"
+              className="btn btn-link text-danger"
               onClick={() => setForm("forgot")}
             >
               Forgot password?
             </button>
             <button
-              className="text-primary bg-transparent"
+              className="btn btn-link text-primary"
               onClick={() => setForm("signup")}
             >
               Don't have an account? Sign Up
             </button>
           </div>
-          <div className="demo-login-buttons d-flex justify-content-between">
+          <div className="text-center mt-3">
             <Button
               type="button"
               variant="contained"
               color="success"
+              className="me-2"
               onClick={() =>
                 login({ email: "demo_user@gmail.com", password: "12345678" })
               }
@@ -109,6 +115,7 @@ function LoginForm(props) {
             <Button
               type="button"
               variant="contained"
+              className="ms-2"
               onClick={() =>
                 login({ email: "admin@turbotunemotorcycles.com", password: "87654321" })
               }

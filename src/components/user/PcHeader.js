@@ -77,15 +77,15 @@ function PcHeader() {
       >
         <div className="brand">
           <img
-            width="80px"
-            height={"38px"}
+            width="100px"
+            height={"68px"}
             className="service-icon"
-            src="https://static.vecteezy.com/system/resources/thumbnails/002/154/609/small/bike-repair-icon-free-vector.jpg"
+            src='/images/logo.gif'
             alt="service-icon"
           />
-          <h6 style={{ color: colors.color }} className="brand-name">
-            Moto Service App
-          </h6>
+          {/* <h6 style={{ color: colors.color }} className="brand-name">
+          Turbo Tune Motorcycles App
+          </h6> */}
         </div>
 
         <div className="nav-items-container d-flex gap-2 align-items-center">

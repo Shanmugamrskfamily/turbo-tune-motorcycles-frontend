@@ -6,7 +6,7 @@ function PcFooter() {
         className="pc-footer d-flex justify-content-center align-items-center"
       >
         <p className="text-center pc-footer-text fw-bold ">
-          &#169; 2023 New Bharathi Internet, Palacode, TN. All Rights Reserved.{" "}
+          &#169; 2024 Turbo Tune Motorcycles, Chennai-TN. All Rights Reserved.{" "}
         </p>
       </div>
     </>

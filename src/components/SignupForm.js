@@ -69,70 +69,76 @@ function SignupForm(props) {
   }
 
   return (
-    <>
-      <div className="signup-form-container">
-        <h2 className="text-center title-small">SignupForm</h2>
-        <form onSubmit={handleSubmit} className="form signup-form">
-          <label className="text-primary">Select your Role</label>
-          {touched.role && errors.role ? (
-            <p className="text-danger">{errors.role}</p>
-          ) : null}
-          <RadioGroup
-            row
-            aria-labelledby="user role radio"
-            name="role"
-            value={values.role}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.role && Boolean(errors.role)}
-            helperText={touched.role && errors.role ? errors.role : null}
-          >
-            <FormControlLabel value="user" control={<Radio />} label="User" />
-            <FormControlLabel
-              value="workshop"
-              control={<Radio />}
-              label="Workshop"
-            />
-          </RadioGroup>
+    <div className="container">
+    <h2 className="text-center mb-5">Signup Form</h2>
+    <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <label>Select your Role</label>
+        <RadioGroup
+          row
+          aria-labelledby="user role radio"
+          name="role"
+          value={values.role}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.role && Boolean(errors.role)}
+          helperText={touched.role && errors.role ? errors.role : null}
+        >
+          <FormControlLabel value="user" control={<Radio />} label="User" />
+          <FormControlLabel value="workshop" control={<Radio />} label="Workshop" />
+        </RadioGroup>
+        {touched.role && errors.role && <p className="text-danger">{errors.role}</p>}
+      </div>
 
-          <TextField
-            id="name"
-            type="text"
-            label="Name"
-            name="name"
-            value={values.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.name && Boolean(errors.name)}
-            helperText={touched.name && errors.name ? errors.name : null}
-          />
+      <div className="mb-3 form-group">
+        <TextField
+          id="name"
+          type="text"
+          label="Name"
+          name="name"
+          className="form-control"
+          value={values.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.name && Boolean(errors.name)}
+          helperText={touched.name && errors.name ? errors.name : null}
+        />
+      </div>
+      <div className="mb-3 form-group">
           <TextField
             id="mobile"
             type="text"
             label="Mobile"
             name="mobile"
+            className="form-control"
             value={values.mobile}
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.mobile && Boolean(errors.mobile)}
             helperText={touched.mobile && errors.mobile ? errors.mobile : null}
           />
+          </div>
+          <div className="mb-3 form-group">
           <TextField
             id="email"
             type="text"
             label="email"
             name="email"
+            className="form-control"
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.email && Boolean(errors.email)}
             helperText={touched.email && errors.email ? errors.email : null}
           />
+          </div>
+          <div className="mb-3 form-group">
           <TextField
             id="password"
             label="Password"
             type="password"
             name="password"
+            className="form-control"
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -141,11 +147,14 @@ function SignupForm(props) {
               touched.password && errors.password ? errors.password : null
             }
           />
+          </div>
+          <div className="mb-3 form-group">
           <TextField
             id="cpassword"
             label="Confirm Password"
             type="password"
             name="cpassword"
+            className="form-control"
             value={values.cpassword}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -154,12 +163,15 @@ function SignupForm(props) {
               touched.cpassword && errors.cpassword ? errors.cpassword : null
             }
           />
+          </div>
+          <div className="mb-3 form-group">
           <TextField
             multiline
             id="address"
             label={values.role === "workshop" ? "Shop Address" : "Address"}
             type="address"
             name="address"
+            className="form-control"
             value={values.address}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -168,55 +180,56 @@ function SignupForm(props) {
               touched.address && errors.address ? errors.address : null
             }
           />
+          </div>
 
           {values.role === "workshop" ? (
+            <div className="mb-3 form-group">
             <TextField
               multiline
               id="pins"
               label="Comma Separated Service Pincodes"
               type="pins"
               name="pins"
+              className="form-control"
               value={values.pins}
               onChange={handleChange}
               onBlur={handleBlur}
               error={touched.pins && Boolean(errors.pins)}
               helperText={touched.pins && errors.pins ? errors.pins : null}
             />
+            </div>
           ) : (
+            <div className="mb-3 form-group">
             <TextField
               id="pin"
               label="Pincode"
               type="pin"
               name="pin"
+              className="form-control"
               value={values.pin}
               onChange={handleChange}
               onBlur={handleBlur}
               error={touched.pin && Boolean(errors.pin)}
               helperText={touched.pin && errors.pin ? errors.pin : null}
             />
+            </div>
           )}
-
-          <CustomLoadingButton
-            isLoading={isLoading}
-            setIsLoading={setIsLoading}
-            buttonComponent={
-              <Button type="submit" variant="contained">
-                Signup
-              </Button>
-            }
-          />
-          <div className="add-menus d-flex justify-content-between">
-            <button
-              className="text-danger bg-transparent"
-              onClick={() => setForm("login")}
-            >
-              Already Have Account?
-            </button>
-          </div>
-        </form>
-        {/* <pre>{JSON.stringify(errors)}</pre> */}
-      </div>
-    </>
+<CustomLoadingButton
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          buttonComponent={
+            <div className="text-center">
+            <Button type="submit" variant="contained" className="btn-lg">
+              Signup
+            </Button>
+            </div>
+          }
+        />
+        <div className="text-center">
+          <button className="btn btn-link" onClick={() => setForm("login")}>Already Have an Account?</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

@@ -92,7 +92,7 @@ export function ChangePasswordForm() {
         onSubmit={handleSubmit}
         className="change-password-form form"
       >
-        <h3 className="text-center">Change Password Form</h3>
+        <h3 className="text-center" style={{ color: "#007bff", textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)" }}>Change Password Form</h3>
         <h4 className="text-center">hi, {name}</h4>
         <TextField
           id="email"
