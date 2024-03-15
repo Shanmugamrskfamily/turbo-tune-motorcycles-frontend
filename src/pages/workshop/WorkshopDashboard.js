@@ -1,13 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DoughnutChart } from "../../components/workshop/DoughnutChart";
 
 import { ReLoad } from "../../components/workshop/ReLoad";
 
 import { workshopDataContext } from "./workshopLayout";
+import { toast } from "react-toastify";
 function WorkshopDashboard() {
   const { allBookings } = useContext(workshopDataContext);
   const statusCodeArray = ["00", "01", "02", "03", "04", "05", "06"];
+
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
 
   const doughnutChartData = {
     labels: [
@@ -72,6 +83,15 @@ function CountCard(props) {
   const { code } = props;
   const { allBookings } = useContext(workshopDataContext);
   const navigate = useNavigate();
+
+  const authToken=localStorage.getItem('token');
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
 
   const bookingStatusCodes = {
     "00": { text: "Booked", bgColor: "#000", path: "00" },

@@ -1,6 +1,6 @@
 import { Button, IconButton } from "@mui/material";
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { workshopDataContext } from "./workshopLayout";
 import PhoneForwardedIcon from "@mui/icons-material/PhoneForwarded";
 import { ReLoad } from "../../components/workshop/ReLoad";
@@ -11,6 +11,16 @@ function WorkshopStatusFilteredBookings() {
   const { id } = useParams();
   //   console.log("params id", id);
   const { allBookings } = useContext(workshopDataContext);
+
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
   const bookingStatusCodes = {
     "00": { text: "Booked", color: "#000" },
     "01": { text: "Vehicle picked", color: "#5bc0de" },

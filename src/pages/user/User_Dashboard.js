@@ -1,10 +1,23 @@
+import { useNavigate } from "react-router-dom";
 import ImageSliderCarousel from "../../components/user/ImageSlider";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 // import { userDataContext } from "./UserLayout ";
 
 function UserDashboard() {
   // const userData = useContext(userDataContext);
   // console.log("data ctx", userData);
+
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[])
   const images = [
     {
       name: "image1",

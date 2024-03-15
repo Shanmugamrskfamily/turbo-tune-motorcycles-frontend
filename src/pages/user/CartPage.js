@@ -7,10 +7,22 @@ import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function CartPage() {
   const { cartServices } = useContext(userDataContext);
   const [total, setTotal] = useState(0);
+
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
+
   useEffect(() => {
     const cTotal = cartServices.reduce((acc, cobj) => {
       return acc + parseInt(cobj.charge) * parseInt(cobj.qty);

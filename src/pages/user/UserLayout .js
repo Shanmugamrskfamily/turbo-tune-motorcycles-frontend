@@ -5,7 +5,7 @@ import {
   useReducer,
   useState,
 } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { apiContext } from "../../App";
 import { MobileFooter } from "../../components/user/MobileFooter";
 import { MobileHeader } from "../../components/user/MobileHeader";
@@ -13,6 +13,7 @@ import { PcFooter } from "../../components/user/PcFooter";
 import { PcHeader } from "../../components/user/PcHeader.js";
 import "../../user.css";
 import { cartReducer } from "./CartReducer";
+import { toast } from "react-toastify";
 
 export const userDataContext = createContext();
 function UserLayout() {
@@ -23,6 +24,15 @@ function UserLayout() {
   const [workshops, setWorkshops] = useState([]);
   const [bookingDetails, setBookingDetails] = useState({});
   const [cartServices, cartDispatch] = useReducer(cartReducer, []);
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[])
 
   const dataContextObj = {
     allServices,

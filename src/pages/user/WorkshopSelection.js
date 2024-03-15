@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { userDataContext } from "./UserLayout ";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -15,6 +15,16 @@ function WorkshopSelection() {
   const { workshops, bookingDetails, setBookingDetails, cartDispatch } =
     useContext(userDataContext);
   const navigate = useNavigate();
+
+
+  const authToken=localStorage.getItem('token');
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
 
   const formik = useFormik({
     initialValues: { vehicleNo: "", vehicleModel: "", remarks: "" },

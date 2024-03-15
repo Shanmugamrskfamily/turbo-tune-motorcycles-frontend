@@ -5,11 +5,24 @@ import { apiContext } from "../../App";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 import { EditWorkshopProfile } from "./EditWorkshopProfile.js";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function WorkshopProfile() {
   const { serverApi } = useContext(apiContext);
   const [workshopProfile, setWorkshopProfile] = useState(null);
   const [editMode, setEditMode] = useState(false);
+
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
+
   async function fetchWorkshopProfile() {
     const response = await fetch(`${serverApi}/user/profile`, {
       method: "GET",

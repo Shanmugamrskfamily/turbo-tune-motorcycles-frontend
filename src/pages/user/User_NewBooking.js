@@ -1,9 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 import { IconButton } from "@mui/material";
 
 import { userDataContext } from "./UserLayout ";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function UserNewBooking() {
   const { allServices, allServiceCategories, cartDispatch } =
@@ -11,6 +13,16 @@ function UserNewBooking() {
 
   const [filteredServices, setFilteredServices] = useState(allServices);
   const [selectedCategory, setSelectedCategory] = useState("All Services");
+
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[])
 
   const handleAddToCart = (value) => {
     cartDispatch({ type: "ADDED", payload: value });

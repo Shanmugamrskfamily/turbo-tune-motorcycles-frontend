@@ -7,8 +7,18 @@ import PhoneForwardedIcon from "@mui/icons-material/PhoneForwarded";
 import { IconButton } from "@mui/material";
 import { workshopDataContext } from "./workshopLayout";
 import { ReLoad } from "../../components/workshop/ReLoad";
+import { useNavigate } from "react-router-dom";
 function WorkshopAllBookings() {
   const { allBookings } = useContext(workshopDataContext);
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
   return (
     <>
       <div className="all-bookings-page">

@@ -7,8 +7,18 @@ import { IconButton } from "@mui/material";
 import { EditUserProfile } from "../user/EditUserProfile.js";
 
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function UserProfile() {
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
   const { serverApi } = useContext(apiContext);
   const [userProfile, setUserProfile] = useState(null);
   const [editMode, setEditMode] = useState(false);

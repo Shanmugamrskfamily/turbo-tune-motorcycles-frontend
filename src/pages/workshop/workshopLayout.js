@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { apiContext } from "../../App";
 import { MobileFooter } from "../../components/workshop/MobileFooter";
 import { MobileHeader } from "../../components/workshop/MobileHeader";
@@ -7,14 +7,24 @@ import { PcFooter } from "../../components/workshop/PcFooter";
 import { PcHeader } from "../../components/workshop/PcHeader.js";
 import "../../user.css";
 import "../../workshop.css";
+import { toast } from "react-toastify";
 
 export const workshopDataContext = createContext();
 function WorkshopLayout() {
   const { serverApi, isMobile } = useContext(apiContext);
   const [reloadData, setReloadData] = useState(false);
-
   const [allBookings, setAllBookings] = useState([]);
   const [allServices, setAllServices] = useState([]);
+
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
 
   const dataContextObj = {
     allBookings,

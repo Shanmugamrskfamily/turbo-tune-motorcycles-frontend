@@ -4,10 +4,21 @@ import { apiContext } from "../../App";
 
 import PhoneForwardedIcon from "@mui/icons-material/PhoneForwarded";
 import { IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function UserAllBookings() {
   const { serverApi } = useContext(apiContext);
   const [allUserBookings, setAllUserBookings] = useState([]);
+
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[]);
 
   async function getBookings() {
     const response = await fetch(`${serverApi}/bookings/getAllUserBookings`, {

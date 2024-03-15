@@ -2,7 +2,19 @@ import SettingsPhoneIcon from "@mui/icons-material/SettingsPhone";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 function UserSupport() {
+  const authToken=localStorage.getItem('token');
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!authToken){
+      toast.warning('Your Not Authoized to View this Page!');
+      navigate('/');
+    }
+  },[])
   return (
     <>
       <div className="support-page">
