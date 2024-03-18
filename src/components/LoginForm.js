@@ -120,7 +120,7 @@ function LoginForm(props) {
                 login({ email: "admin@turbotunemotorcycles.com", password: "87654321" })
               }
             >
-              Demo Admin-Login
+              Demo Workshop-Login
             </Button>
           </div>
         </form>
