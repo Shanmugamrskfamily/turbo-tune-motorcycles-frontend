@@ -24,26 +24,22 @@ function LoginForm(props) {
     });
 
   const login = async (values) => {
-    try {
-      setIsLoading(true);
+    setIsLoading(true);
     const response = await fetch(`${serverApi}/user/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
     if (response.status === 200) {
+      setIsLoading(false);
       const data = await response.json();
       localStorage.setItem("token", data.token);
       toast.success(data.message);
-      setIsLoading(false);
       data.role === "workshop" ? navigate("/workshop") : navigate("/user");
     } else {
-      toast.error('Invalid User Email or Password!');
       setIsLoading(false);
-    }
-    } catch (error) {
-      setIsLoading(false);
-      toast.error(error.response.data.message);
+      const data = await response.json();
+      toast.error(data.message);
     }
   };
   
